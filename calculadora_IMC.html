@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #8E9DCC;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        div#estrutura {
+            background: #fff;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            border-radius: 30px;
+            box-shadow: 5px 5px 20px;
+        }
+
+        h3 {
+            font-size: 25px;
+            padding: 10px;
+            color: #8E9DCC;
+        }
+
+        div label {
+            color: #8E9DCC;
+        }
+
+        div input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #8E9DCC;
+        }
+
+        #botao {
+            border: none;
+            background-color: #8E9DCC;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 15px;
+            box-shadow: 5px 5px 10px;
+        }
+
+        #botao:hover {
+            cursor: pointer;
+            color: #8E9DCC;
+            background-color: #fff;
+            border: 2px solid #8E9DCC;
+            
+        }
+
+        #resultado{
+            color: #8E9DCC;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="estrutura">
+        <h3>Calcule seu IMC</h3>
+
+        <div>
+            <label for="peso">Peso (Kg)</label>
+            <input id="peso" type="number" placeholder="Ex: 50">
+        </div>
+
+        <div>
+            <label for="altura">Altura (M)</label>
+            <input id="altura" type="number" placeholder="Ex: 1.60">
+        </div>
+
+        <br>
+
+        <input type="button" value="calcular" onclick="calcular()" id="botao">
+
+        <div id="resultado"> Resultado: </div>
+    </div>
+
+    <script>
+        function calcular() {
+            var caixaPeso = window.document.getElementById('peso')
+            var caixaAltura = window.document.getElementById('altura')
+
+            var peso = Number.parseInt(caixaPeso.value)
+            var altura = Number.parseFloat(caixaAltura.value)
+            var res = window.document.getElementById('resultado')
+            var imc = peso / (altura * altura)
+
+
+
+            var classificao = ''
+
+            if (imc < 18.5) {
+                classificao("<p>você está abaixo do peso!</p>")
+            }
+            else if (imc >= 18.5 && imc < 24.9) {
+                classificao = ("você está com seu peso normal!")
+            }
+            else if (imc >= 25 && imc <= 29.9) {
+                classificao = ("você está com sobrepeso!")
+            }
+            else if (imc >= 30 && imc <= 39.9) {
+                classificao = ('você está com obesidade!')
+            }
+            else if (imc > 40) {
+                classificao = ('você está com obesidade grave!')
+            }
+
+            res.innerText = `Seu imc é : ${imc.toFixed(1)}, ${classificao}`
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
